@@ -86,7 +86,9 @@ const RecommendedGrid = () => {
   return (
     <div className="mb-14 py-8 px-16">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-white text-xl font-semibold">Recommended Movies</h2>
+        <h2 className="text-white text-lg lg:text-xlfont-semibold">
+          Recommended Movies
+        </h2>
         <Link
           href="/movies/recommended"
           className="text-red-500 text-sm hover:underline"

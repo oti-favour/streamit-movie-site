@@ -83,7 +83,9 @@ const LatestGrid = () => {
   return (
     <div className="py-8 px-16">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-white text-xl font-semibold">Latest Movies</h2>
+        <h2 className="text-white text-lg lg:text-xl font-semibold">
+          Latest Movies
+        </h2>
         <Link
           href="/movies/latest"
           className="text-red-500 text-sm hover:underline"

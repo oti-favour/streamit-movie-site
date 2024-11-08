@@ -120,28 +120,28 @@ const Trailer = () => {
 
   return (
     <div>
-      <div className="w-full h-screen">
+      <div className="w-full h-auto lg:h-screen">
         {movie && (
-          <div className="relative spy-8 px-14">
+          <div className="relative px-4 py-4  lg:py-8 lg:px-14">
             <div
-              className="absolute inset-0 bg-cover bg-center h-screen"
+              className="absolute inset-0 bg-cover bg-center lg:h-screen"
               style={{
                 backgroundImage: `url(${movie.backgroundImage})`,
               }}
             ></div>
 
-            <div className="absolute inset-0 bg-black bg-opacity-50 h-screen"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-50 h-auto lg:h-screen"></div>
 
-            <div className="relative z-10 flex h-full px-8 py-4 lg:py-8">
-              <div className="w-full lg:w-1/2 text-white flex flex-col  justify-center">
-                <h1 className="text-5xl lg:text-7xl font-bold mb-4">
+            <div className="relative z-10 flex h-full lg:px-8 py-4 pl-4 lg:py-8">
+              <div className="w-full lg:w-1/2 text-white flex flex-col justify-center">
+                <h1 className="text-4xl lg:text-7xl font-bold mb-4">
                   {movie.title}
                 </h1>
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="flex items-center text-red-500">
                     {getStars(movie.rating)}
                   </div>
-                  <span className="text-lg">{movie.rating} (IMDb)</span>
+                  <span className="text-lg">{movie.rating}(IMDb)</span>
                   <span className="text-lg ">{movie.duration}</span>
                 </div>
                 <p className=" hidden lg:mb-4 text-sm ">

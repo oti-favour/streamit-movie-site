@@ -41,7 +41,6 @@ const HeroSection = () => {
         const data = await response.json();
         const limitedMovies = data.results.slice(0, 1);
 
-        // Map over movies and fetch additional details for each
         const detailedMovies = await Promise.all(
           limitedMovies.map(async (movie: any) => {
             const movieDetails = await fetchMovieDetails(movie.id); // Fetching additional details
@@ -56,16 +55,15 @@ const HeroSection = () => {
           })
         );
 
-        setMovies(detailedMovies); // Set the movies with all details
-        setError(null); // Clear any previous errors
+        setMovies(detailedMovies);
+        setError(null);
       } catch (err) {
-        setError((err as Error).message); // Set error message to display
+        setError((err as Error).message);
       } finally {
-        setLoading(false); // Stop the loader
+        setLoading(false);
       }
     };
 
-    // Function to fetch details for each movie
     const fetchMovieDetails = async (movieId: number) => {
       try {
         const response = await fetch(
@@ -99,7 +97,7 @@ const HeroSection = () => {
   }, []);
 
   const getStars = (rating: number) => {
-    const fullStars = Math.floor(rating / 2); // Convert rating out of 10 to stars out of 5
+    const fullStars = Math.floor(rating / 2);
     const emptyStars = 5 - fullStars;
     return (
       <>
@@ -118,8 +116,8 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="lg:mb-24 ">
-      <div className="w-full h-screen">
+    <div className=" ">
+      <div className="w-full h-auto lg:h-screen">
         {loading ? (
           <div className="flex justify-center items-center h-screen">
             <FaSpinner className="animate-spin text-red-500 text-6xl" />
@@ -130,19 +128,19 @@ const HeroSection = () => {
           </div>
         ) : (
           movies.slice(0, 1).map((movie, index) => (
-            <div key={index} className="relative py-8 px-14">
+            <div key={index} className="relative lg:py-8 lg:px-14">
               <div
-                className="absolute inset-0 bg-cover bg-center h-screen"
+                className="absolute inset-0 bg-cover bg-center lg:h-screen"
                 style={{
                   backgroundImage: `url(${movie.backgroundImage})`,
                 }}
               ></div>
 
-              <div className="absolute inset-0 bg-black bg-opacity-50 h-screen"></div>
+              <div className="absolute inset-0 bg-black bg-opacity-50 h-auto lg:h-screen"></div>
 
               <div className="relative z-10 flex h-full px-8 py-20 lg:py-0">
                 <div className="w-full lg:w-1/2 text-white flex flex-col lg:pt-32 justify-center">
-                  <h1 className="text-5xl lg:text-7xl font-bold mb-4">
+                  <h1 className="text-4xl lg:text-7xl font-bold mb-4">
                     {movie.title}
                   </h1>
                   <div className="flex items-center space-x-4 mb-4">
