@@ -3,6 +3,16 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 import { FaSpinner } from "react-icons/fa";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/core";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import {
+  IoIosArrowDroprightCircle,
+  IoIosArrowDropleftCircle,
+} from "react-icons/io";
 
 interface Movie {
   id: number;
@@ -39,7 +49,7 @@ const HeroSection = () => {
         }
 
         const data = await response.json();
-        const limitedMovies = data.results.slice(0, 1);
+        const limitedMovies = data.results.slice(0, 3);
 
         const detailedMovies = await Promise.all(
           limitedMovies.map(async (movie: any) => {
@@ -116,82 +126,104 @@ const HeroSection = () => {
   };
 
   return (
-    <div className=" ">
-      <div className="w-full h-auto lg:h-screen">
-        {loading ? (
-          <div className="flex justify-center items-center h-screen">
-            <FaSpinner className="animate-spin text-red-500 text-6xl" />
-          </div>
-        ) : error ? (
-          <div className="flex justify-center items-center h-screen text-red-500 text-xl">
-            {error}
-          </div>
-        ) : (
-          movies.slice(0, 1).map((movie, index) => (
-            <div key={index} className="relative lg:py-8 lg:px-14">
-              <div
-                className="absolute inset-0 bg-cover bg-center lg:h-screen"
-                style={{
-                  backgroundImage: `url(${movie.backgroundImage})`,
-                }}
-              ></div>
+    <div className="w-full h-auto lg:h-screen">
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <FaSpinner className="animate-spin text-red-500 text-6xl" />
+        </div>
+      ) : error ? (
+        <div className="flex justify-center items-center h-screen text-red-500 text-xl">
+          {error}
+        </div>
+      ) : (
+        <div>
+          {" "}
+          <IoIosArrowDroprightCircle
+            className="swiper-button-next hidden lg:block "
+            size={50}
+            color="white"
+          />
+          <IoIosArrowDropleftCircle
+            className="hidden lg:block swiper-button-prev "
+            size={50}
+            color="white"
+          />
+          <Swiper
+            modules={[Pagination, Navigation]}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            pagination={true}
+            loop={true}
+            className="h-full w-full"
+          >
+            {movies.slice(0, 3).map((movie, index) => (
+              <SwiperSlide key={index} className="relative">
+                <div
+                  className="absolute inset-0 bg-cover bg-center lg:h-screen"
+                  style={{
+                    backgroundImage: `url(${movie.backgroundImage})`,
+                  }}
+                ></div>
 
-              <div className="absolute inset-0 bg-black bg-opacity-50 h-auto lg:h-screen"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-50 h-auto lg:h-screen"></div>
 
-              <div className="relative z-10 flex h-full px-8 py-20 lg:py-0">
-                <div className="w-full lg:w-1/2 text-white flex flex-col lg:pt-32 justify-center">
-                  <h1 className="text-4xl lg:text-7xl font-bold mb-4">
-                    {movie.title}
-                  </h1>
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="flex items-center text-red-500">
-                      {getStars(movie.rating)}
+                <div className="relative z-10 flex h-full px-8 lg:px-24 py-20 lg:py-0">
+                  <div className="w-full lg:w-1/2 text-white flex flex-col lg:pt-32 justify-center">
+                    <h1 className="text-4xl lg:text-7xl font-bold mb-4">
+                      {movie.title}
+                    </h1>
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="flex items-center text-red-500">
+                        {getStars(movie.rating)}
+                      </div>
+                      <span className="text-lg">{movie.rating} (IMDb)</span>
+                      <span className="text-lg">{movie.duration}</span>
                     </div>
-                    <span className="text-lg">{movie.rating} (IMDb)</span>
-                    <span className="text-lg ">{movie.duration}</span>
-                  </div>
-                  <p className="hidden lg:mb-4 text-sm ">
-                    {truncateText(movie.description, 300)}
-                  </p>
-                  <p className="block lg:hidden mb-2 text-sm ">
-                    {truncateText(movie.description, 200)}
-                  </p>
-                  <p className="mb-2 ">
-                    <strong className="text-red-500">Starring:</strong>{" "}
-                    {movie.starring}
-                  </p>
-                  <p className="mb-2 ">
-                    <strong className="text-red-500">Genre:</strong>{" "}
-                    {movie.genre}
-                  </p>
-                  <div className="flex space-x-2 mb-6">
-                    <strong className="text-red-500">Tags:</strong>
-                    {movie.tags.map((tag, i) => (
-                      <span key={i} className="py-1 text-white text-sm">
-                        {tag}
-                      </span>
-                    ))}
+                    <p className="hidden lg:block mb-4 text-sm">
+                      {truncateText(movie.description, 300)}
+                    </p>
+                    <p className="block lg:hidden mb-2 text-sm">
+                      {truncateText(movie.description, 200)}
+                    </p>
+                    <p className="mb-2">
+                      <strong className="text-red-500">Starring:</strong>{" "}
+                      {movie.starring}
+                    </p>
+                    <p className="mb-2">
+                      <strong className="text-red-500">Genre:</strong>{" "}
+                      {movie.genre}
+                    </p>
+                    <div className="flex space-x-2 mb-6">
+                      <strong className="text-red-500">Tags:</strong>
+                      {movie.tags.map((tag, i) => (
+                        <span key={i} className="py-1 text-white text-sm">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button className="px-6 py-2 w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
+                      Play Now
+                    </button>
                   </div>
 
-                  <button className="px-6 py-2 w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
-                    Play Now
-                  </button>
+                  <div className="hidden lg:flex w-1/2 items-center justify-center">
+                    <button className="flex items-center text-gray-200 space-x-2">
+                      <AiOutlinePlayCircle
+                        size={90}
+                        className="hover:text-red-500"
+                      />
+                      <span className="text-xl font-medium">Watch Trailer</span>
+                    </button>
+                  </div>
                 </div>
-
-                <div className="hidden lg:flex w-1/2 items-center justify-center">
-                  <button className="flex items-center text-gray-200 space-x-2 ">
-                    <AiOutlinePlayCircle
-                      size={90}
-                      className="hover:text-red-500"
-                    />
-                    <span className="text-xl font-medium">Watch Trailer</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      )}
     </div>
   );
 };
