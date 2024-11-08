@@ -73,7 +73,6 @@ const HeroSection = () => {
         );
         const movieData = await response.json();
 
-        // Extract and format the necessary data
         const genres = movieData.genres.map((g: any) => g.name).join(", ");
         const runtime = `${Math.floor(movieData.runtime / 60)}hr ${
           movieData.runtime % 60
@@ -96,11 +95,9 @@ const HeroSection = () => {
       }
     };
 
-    // Fetch the movies (this will also trigger the fetchMovieDetails function for each)
     fetchMovies();
   }, []);
 
-  // Function to render stars based on rating
   const getStars = (rating: number) => {
     const fullStars = Math.floor(rating / 2); // Convert rating out of 10 to stars out of 5
     const emptyStars = 5 - fullStars;
@@ -121,13 +118,13 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="mb-28">
+    <div className="lg:mb-24 ">
       <div className="w-full h-screen">
         {loading ? (
           <div className="flex justify-center items-center h-screen">
             <FaSpinner className="animate-spin text-red-500 text-6xl" />
           </div>
-        ) : error ? ( // Show error message if there’s an error
+        ) : error ? (
           <div className="flex justify-center items-center h-screen text-red-500 text-xl">
             {error}
           </div>
@@ -144,8 +141,10 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-black bg-opacity-50 h-screen"></div>
 
               <div className="relative z-10 flex h-full px-8 py-20 lg:py-0">
-                <div className="w-full lg:w-1/2 text-white flex flex-col pt-32 justify-center">
-                  <h1 className="text-7xl font-bold mb-4">{movie.title}</h1>
+                <div className="w-full lg:w-1/2 text-white flex flex-col lg:pt-32 justify-center">
+                  <h1 className="text-5xl lg:text-7xl font-bold mb-4">
+                    {movie.title}
+                  </h1>
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="flex items-center text-red-500">
                       {getStars(movie.rating)}
@@ -153,8 +152,11 @@ const HeroSection = () => {
                     <span className="text-lg">{movie.rating} (IMDb)</span>
                     <span className="text-lg ">{movie.duration}</span>
                   </div>
-                  <p className="mb-4 text-sm ">
+                  <p className="hidden lg:mb-4 text-sm ">
                     {truncateText(movie.description, 300)}
+                  </p>
+                  <p className="block lg:hidden mb-2 text-sm ">
+                    {truncateText(movie.description, 200)}
                   </p>
                   <p className="mb-2 ">
                     <strong className="text-red-500">Starring:</strong>{" "}
@@ -173,7 +175,7 @@ const HeroSection = () => {
                     ))}
                   </div>
 
-                  <button className="px-6 py-2 w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
+                  <button className="px-6 py-2 w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
                     Play Now
                   </button>
                 </div>

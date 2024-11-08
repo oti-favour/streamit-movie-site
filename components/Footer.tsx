@@ -10,9 +10,9 @@ export default function Footer() {
   return (
     <footer className=" text-white py-8 px-12">
       <div className="container  px-2">
-        <div className="flex gap-x-4 pb-2">
-          <div className="flex-col w-3/5">
-            <ul className="flex text-[14px] gap-x-8">
+        <div className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-4 pb-2">
+          <div className="lg:flex-col w-full lg:w-3/5">
+            <ul className="hidden  lg:flex text-[14px] gap-x-8">
               <li>
                 <Link href="#" className="hover:text-gray-400">
                   Terms of Use
@@ -23,6 +23,37 @@ export default function Footer() {
                   Privacy Policy
                 </Link>
               </li>
+              <li>
+                <Link href="#" className="hover:text-gray-400">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-gray-400">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-gray-400">
+                  Watch List
+                </Link>
+              </li>
+            </ul>
+            <ul className="block  lg:hidden text-[14px] space-y-4 ">
+              <div className="flex flex-row gap-x-4 ">
+                {" "}
+                <li>
+                  <Link href="#" className="hover:text-gray-400">
+                    Terms of Use
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-gray-400">
+                    Privacy Policy
+                  </Link>
+                </li>
+              </div>
+
               <li>
                 <Link href="#" className="hover:text-gray-400">
                   Blog
@@ -50,7 +81,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col mr-8 ">
-            <p className="font-semibold mb-8 ">Follow Us</p>
+            <p className="font-semibold mb-4 lg:mb-8 ">Follow Us</p>
             <div className="flex text-xl  flex-row gap-x-5">
               <FaFacebook />
               <AiFillTwitterCircle />
@@ -60,7 +91,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col">
-            <p className="font-semibold  mb-5">Streamit App</p>
+            <p className="font-semibold  mb-2 lg:mb-5">Streamit App</p>
             <div className="flex items-center space-x-4 mt-2">
               <Link href="/">
                 <div className="flex items-center space-x-2">
