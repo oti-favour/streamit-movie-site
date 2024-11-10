@@ -71,7 +71,7 @@ export default function Footer() {
               </li>
             </ul>
             <div className="text-start pt-4">
-              <p className="text-[14px] text-white ">
+              <p className="text-[14px] text-white leading-loose ">
                 © 2022 STREAMIT. All Rights Reserved. All videos and shows on
                 this platform are trademarks of, and all related images and
                 content are the property of, Streamit Inc. Duplication and copy

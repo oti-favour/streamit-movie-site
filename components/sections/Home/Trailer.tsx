@@ -171,7 +171,9 @@ const Trailer = () => {
                     size={90}
                     className="hover:text-red-500"
                   />
-                  <span className="text-xl font-medium">Watch Trailer</span>
+                  <span className="text-2xl  uppercase font-medium">
+                    Watch Trailer
+                  </span>
                 </button>
               </div>
             </div>
