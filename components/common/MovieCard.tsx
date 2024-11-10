@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Button from "./Button";
 
 interface MovieCardProps {
   title: string;
@@ -19,11 +20,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ title, time, image }) => {
       />
 
       <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col px-10 pt-20 gap-y-1">
-        <h3 className="text-white text-sm font-semibold">{title}</h3>
+        <h3 className="text-white text-base font-semibold">{title}</h3>
         <p className="text-gray-300 text-sm mb-2">{time}</p>
-        <button className="bg-red-600 text-sm w-1/2 text-white px-2 py-2  hover:bg-red-700 transition-colors">
-          Play Now
-        </button>
+        <Button />
       </div>
     </div>
   );

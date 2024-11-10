@@ -119,14 +119,12 @@ const Navbar = () => {
             </li>
           </ul>
 
-          {/* Icons */}
           <div className="flex text-xl gap-x-4 mt-6">
-            <FaSearch />
-            <FaBell />
-            <FaRegUserCircle />
+            <FaSearch className="text-2xl" />
+            <FaBell className="text-2xl" />
+            <FaRegUserCircle className="text-2xl" />
           </div>
 
-          {/* Subscribe Button */}
           <Link href="/subscribe">
             <div className="bg-red-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-700 transition-colors mt-6">
               Subscribe Now

@@ -2,8 +2,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { AiOutlinePlayCircle } from "react-icons/ai";
+import { FaPlay } from "react-icons/fa";
 
-// Define the Movie type for the trailer section
 interface Movie {
   title: string;
   rating: number;
@@ -33,29 +33,24 @@ const Trailer = () => {
         setLoading(true);
         setError(null);
 
-        // Fetch the top-rated movies
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US&page=1`
         );
         const data = await response.json();
 
-        // Get the first movie from the list (top-rated movie)
         const topMovie = data.results[0];
 
-        // Fetch detailed information about the top movie
         const detailsResponse = await fetch(
           `https://api.themoviedb.org/3/movie/${topMovie.id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
         );
         const detailsData = await detailsResponse.json();
 
-        // Get the movie runtime in hours and minutes format
         const runtime = detailsData.runtime
           ? `${Math.floor(detailsData.runtime / 60)} hr : ${
               detailsData.runtime % 60
             } mins`
           : "N/A";
 
-        // Set the movie state with the necessary details
         setMovie({
           title: detailsData.title,
           rating: detailsData.vote_average,
@@ -82,9 +77,8 @@ const Trailer = () => {
     fetchTopRatedMovie();
   }, []);
 
-  // Get the stars for the movie rating
   const getStars = (rating: number) => {
-    const fullStars = Math.floor(rating / 2); // Convert rating out of 10 to stars out of 5
+    const fullStars = Math.floor(rating / 2);
     const emptyStars = 5 - fullStars;
     return (
       <>
@@ -144,7 +138,7 @@ const Trailer = () => {
                   <span className="text-lg">{movie.rating}(IMDb)</span>
                   <span className="text-lg ">{movie.duration}</span>
                 </div>
-                <p className=" hidden lg:mb-4 text-sm ">
+                <p className=" hidden lg:mb-4 lg:leading-loose text-sm ">
                   {truncateText(movie.description, 300)}
                 </p>
                 <p className=" block mb-2 text-sm ">
@@ -166,8 +160,8 @@ const Trailer = () => {
                   ))}
                 </div>
 
-                <button className="px-6 py-2 w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
-                  Play Now
+                <button className="px-2 lg:px-6 py-2 flex items-center justify-center gap-x-2 uppercase lg:mb-4 w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
+                  <FaPlay /> Play Now
                 </button>
               </div>
 
