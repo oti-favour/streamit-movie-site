@@ -11,7 +11,7 @@ const Navbar = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <nav className="lg:fixed absolute top-0 left-0 w-full flex items-center bg-transparent bg-opacity-90  py-4 px-8 gap-x-8 z-20 ">
+    <nav className="lg:fixed absolute top-0 left-0 w-full flex items-center bg-black bg-opacity-50 py-4 px-8 gap-x-8 z-20 ">
       <div>
         <Link href="/">
           <div className="flex">
