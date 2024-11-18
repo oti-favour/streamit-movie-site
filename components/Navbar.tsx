@@ -5,6 +5,7 @@ import { HiMenu } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import { RiCloseLargeLine } from "react-icons/ri";
+import Search from "./common/Search";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,7 +66,7 @@ const Navbar = () => {
       </ul>
       <div className="hidden md:flex ml-auto space-x-6 ">
         <div className="flex text-xl gap-x-4 mt-2 text-white">
-          <FaSearch />
+          <Search />
 
           <FaRegUserCircle />
         </div>

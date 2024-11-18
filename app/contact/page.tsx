@@ -108,9 +108,9 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen">
+    <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen px-8 py-12">
       <div className="w-full lg:w-1/2 p-8">
-        <h2 className="text-4xl font-bold text-red-500 mb-6">Contact Us</h2>
+        <h2 className="text-4xl font-bold text-red-600 mb-6">Contact Us</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-white mb-1">Name</label>
@@ -182,7 +182,7 @@ const ContactForm: React.FC = () => {
 
       <div className="hidden lg:block lg:w-1/2 p-8">
         <Image
-          src="/path-to-your-logo-or-animation.gif"
+          src="/images/cinema.svg"
           alt="Person watching movie"
           width={500}
           height={500}

@@ -1,17 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import MovieCard from "@/components/common/MovieCard";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
 
 interface Movie {
+  id: number;
   title: string;
   time: string;
   image: string;
+  mediaType: "movie" | "tv"; // Include media type for MovieCard
 }
 
-const LatestGrid = () => {
+const LatestGrid: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -45,9 +48,13 @@ const LatestGrid = () => {
               : "N/A";
 
             return {
+              id: movie.id,
               title: movie.title,
               time: runtime,
-              image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+              image: movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : "/fallback-image.jpg", // Fallback image
+              mediaType: "movie", // Specify media type
             };
           })
         );
@@ -96,10 +103,12 @@ const LatestGrid = () => {
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {movies.map((movie, index) => (
           <MovieCard
-            key={index}
+            key={`${movie.id}-${index}`}
+            id={movie.id}
             title={movie.title}
             time={movie.time}
             image={movie.image}
+            mediaType={movie.mediaType}
           />
         ))}
       </div>

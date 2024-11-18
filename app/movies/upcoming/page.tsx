@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // /app/movies/upcoming/page.tsx
 "use client";
-import MovieCard from "@/components/common/MovieCard";
+
+import UpcomingMovieCard from "@/components/common/UpcomingMovieCard";
 import React, { useState, useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
 
 interface Movie {
+  id: number;
   title: string;
-  time: string;
-  image: string;
+  release_date: string;
+  poster_path: string;
+  runtime: string;
 }
 
 const UpcomingMoviesPage = () => {
@@ -45,9 +48,11 @@ const UpcomingMoviesPage = () => {
               : "N/A";
 
             return {
+              id: movie.id, // Ensure `id` is included for the key
               title: movie.title,
-              time: runtime,
-              image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+              release_date: movie.release_date,
+              poster_path: movie.poster_path,
+              runtime: runtime,
             };
           })
         );
@@ -84,12 +89,12 @@ const UpcomingMoviesPage = () => {
     <div className="py-8 mt-16 px-16">
       <h2 className="text-white text-xl font-semibold mb-4">Upcoming Movies</h2>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {movies.map((movie, index) => (
-          <MovieCard
-            key={index}
+        {movies.map((movie) => (
+          <UpcomingMovieCard
+            key={movie.id} // Use `id` for the unique key
             title={movie.title}
-            time={movie.time}
-            image={movie.image}
+            releaseDate={new Date(movie.release_date).toLocaleDateString()}
+            image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           />
         ))}
       </div>

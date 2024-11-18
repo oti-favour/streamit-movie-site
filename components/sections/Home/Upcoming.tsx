@@ -1,15 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import MovieCard from "@/components/common/MovieCard";
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import UpcomingMovieCard from "@/components/common/UpcomingMovieCard";
 import { FaSpinner } from "react-icons/fa";
 
 interface Movie {
+  id: number;
   title: string;
-  time: string;
-  image: string;
+  release_date: string;
+  poster_path: string;
 }
+
 const UpcomingGrid = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
@@ -20,40 +21,18 @@ const UpcomingGrid = () => {
       try {
         setLoading(true);
         setError(null);
+
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch movies");
+          throw new Error("Failed to fetch the upcoming movies.");
         }
 
         const data = await response.json();
 
-        const moviesWithDetails = await Promise.all(
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          data.results
-            .slice(0, 3)
-            .map(async (movie: { id: any; title: any; poster_path: any }) => {
-              const detailsResponse = await fetch(
-                `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
-              );
-              const detailsData = await detailsResponse.json();
-              const runtime = detailsData.runtime
-                ? `${Math.floor(detailsData.runtime / 60)} hr : ${
-                    detailsData.runtime % 60
-                  } mins`
-                : "N/A";
-
-              return {
-                title: movie.title,
-                time: runtime,
-                image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-              };
-            })
-        );
-
-        setMovies(moviesWithDetails);
+        setMovies(data.results.slice(0, 3)); // Limit to 9 movies for display
       } catch (error) {
         console.error("Error fetching upcoming movies:", error);
         setError("Failed to load movies. Please try again later.");
@@ -82,7 +61,7 @@ const UpcomingGrid = () => {
   }
 
   return (
-    <div className="py-8 px-16 ">
+    <div className="py-8 px-16">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-white text-lg lg:text-xl font-semibold">
           Upcoming Movies
@@ -95,12 +74,12 @@ const UpcomingGrid = () => {
         </Link>
       </div>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {movies.map((movie, index) => (
-          <MovieCard
-            key={index}
+        {movies.map((movie) => (
+          <UpcomingMovieCard
+            key={movie.id}
             title={movie.title}
-            time={movie.time}
-            image={movie.image}
+            releaseDate={new Date(movie.release_date).toLocaleDateString()}
+            image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           />
         ))}
       </div>

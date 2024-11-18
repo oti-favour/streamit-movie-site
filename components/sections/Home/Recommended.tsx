@@ -7,9 +7,11 @@ import { FaSpinner } from "react-icons/fa"; // For the loading spinner
 
 // Define the Movie type
 interface Movie {
+  id: number;
   title: string;
   time: string;
   image: string;
+  mediaType: "movie" | "tv"; // Include media type for MovieCard
 }
 
 const RecommendedGrid = () => {
@@ -51,6 +53,7 @@ const RecommendedGrid = () => {
               title: movie.title,
               time: runtime,
               image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+              mediaType: "movie",
             };
           })
         );
@@ -99,10 +102,12 @@ const RecommendedGrid = () => {
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {movies.map((movie, index) => (
           <MovieCard
-            key={index}
+            key={`${movie.id}-${index}`}
+            id={movie.id}
             title={movie.title}
             time={movie.time}
             image={movie.image}
+            mediaType={movie.mediaType}
           />
         ))}
       </div>
