@@ -126,7 +126,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="w-full lg:h-screen">
+    <section className="w-full h-screen ">
       {loading ? (
         <div className="flex justify-center items-center h-screen">
           <FaSpinner className="animate-spin text-red-500 text-6xl" />
@@ -136,15 +136,14 @@ const HeroSection = () => {
           {error}
         </div>
       ) : (
-        <div>
-          {" "}
+        <div className="relative h-full w-full">
           <IoIosArrowDroprightCircle
-            className="swiper-button-next hidden lg:block "
+            className="swiper-button-next hidden lg:block"
             size={50}
             color="white"
           />
           <IoIosArrowDropleftCircle
-            className="hidden lg:block swiper-button-prev "
+            className="hidden lg:block swiper-button-prev"
             size={50}
             color="white"
           />
@@ -159,19 +158,20 @@ const HeroSection = () => {
             className="h-full w-full"
           >
             {movies.slice(0, 3).map((movie, index) => (
-              <SwiperSlide key={index} className="relative">
+              <SwiperSlide key={index} className="relative h-full">
                 <div
-                  className="absolute inset-0 bg-cover bg-center lg:h-full "
-                  style={{
-                    backgroundImage: `url(${movie.backgroundImage})`,
-                  }}
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${movie.backgroundImage})` }}
                 ></div>
+                <div className="absolute inset-0 h-full bg-black bg-opacity-50"></div>
 
-                <div className="absolute inset-0 bg-black bg-opacity-50 h-full"></div>
-
-                <div className="relative z-10 flex h-full px-8 lg:px-24 py-20 lg:pb-10 lg:py-0 ">
-                  <div className="w-full lg:w-1/2 text-white flex flex-col lg:pt-32 justify-center">
-                    <h1 className="text-4xl uppercase lg:text-7xl font-bold mb-4">
+                <div className="relative z-10 flex h-full px-8 lg:px-24 py-16 lg:py-20 xl:py-24 ">
+                  <div className="w-full lg:w-1/2 text-white flex flex-col justify-center">
+                    <h1
+                      className={`text-4xl uppercase lg:text-7xl font-bold mb-4 ${
+                        movie.title.length > 25 ? "lg:text-5xl" : "lg:text-7xl"
+                      }`}
+                    >
                       {movie.title}
                     </h1>
                     <div className="flex items-center space-x-4 mb-4">
@@ -203,19 +203,17 @@ const HeroSection = () => {
                         </span>
                       ))}
                     </div>
-
                     <button className="px-2 lg:px-6 py-2 flex items-center justify-center gap-x-2 uppercase lg:mb-4 w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
                       <FaPlay /> Play Now
                     </button>
                   </div>
-
-                  <div className="hidden lg:flex w-1/2 items-center justify-center">
+                  <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
                     <button className="flex items-center text-gray-200 space-x-2">
                       <AiOutlinePlayCircle
                         size={90}
                         className="hover:text-red-500"
                       />
-                      <span className="text-2xl  uppercase font-medium">
+                      <span className="text-2xl uppercase font-medium">
                         Watch Trailer
                       </span>
                     </button>
@@ -226,7 +224,7 @@ const HeroSection = () => {
           </Swiper>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

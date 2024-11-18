@@ -22,8 +22,7 @@ const RecommendedMoviesPage = () => {
         setLoading(true);
         setError(null);
 
-        // Fetch movie recommendations for a given movie ID
-        const movieId = 500; // Example movie ID (Inception)
+        const movieId = 500;
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
         );

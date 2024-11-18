@@ -4,24 +4,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #191919;
+  --background: #141414;
   --font-poppins: "Poppins", sans-serif;
   --font-roboto: "Roboto", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #141414;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
   background: var(--background);
   font-family: var(--font-poppins);
 }
+
 .body-layout {
   width: 100vw;
   max-width: 1600px;
@@ -32,6 +24,7 @@ body {
 .roboto-text {
   font-family: var(--font-roboto);
 }
+
 footer {
   background-color: #191919;
 }

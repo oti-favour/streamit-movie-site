@@ -22,7 +22,6 @@ const LatestMoviesPage = () => {
         setLoading(true);
         setError(null);
 
-        // Fetch the latest movies (we will fetch a page of 15 movies here)
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
         );
@@ -33,7 +32,6 @@ const LatestMoviesPage = () => {
 
         const data = await response.json();
 
-        // Fetch detailed movie information
         const moviesWithDetails = await Promise.all(
           data.results.slice(0, 15).map(async (movie: any) => {
             const detailsResponse = await fetch(
