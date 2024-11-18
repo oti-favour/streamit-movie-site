@@ -19,6 +19,7 @@ body {
   max-width: 1600px;
   min-width: 300px;
   overflow-x: hidden;
+  margin: auto;
 }
 
 .roboto-text {

@@ -128,7 +128,7 @@ const Trailer = () => {
 
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between h-full px-6 md:px-12 lg:px-24 py-10 lg:py-20">
+          <div className="relative z-10 flex items-center justify-between h-full px-6 md:px-12 lg:px-24 py-10 lg:py-20">
             <div className="w-full lg:w-1/2 text-white">
               <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold mb-4">
                 {movie.title}

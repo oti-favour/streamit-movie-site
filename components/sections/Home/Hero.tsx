@@ -165,7 +165,7 @@ const HeroSection = () => {
                 ></div>
                 <div className="absolute inset-0 h-full bg-black bg-opacity-50"></div>
 
-                <div className="relative z-10 flex h-full px-8 lg:px-24 py-16 lg:py-20 xl:py-24 ">
+                <div className="relative z-10 flex h-full px-8 py-16 lg:px-24 lg:py-20 xl:py-24 ">
                   <div className="w-full lg:w-1/2 text-white flex flex-col justify-center">
                     <h1
                       className={`text-4xl uppercase lg:text-7xl font-bold mb-4 ${
