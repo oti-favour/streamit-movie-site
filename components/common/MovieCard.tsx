@@ -42,7 +42,13 @@ const MovieCard: React.FC<MovieCardProps> = ({
       <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-start text-center px-10">
         <h3 className="text-white text-base font-semibold">{title}</h3>
         <p className="text-gray-300 text-sm mb-2">{time}</p>
-        <Button />
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <Button movieId={id} />
+        </div>
       </div>
     </div>
   );

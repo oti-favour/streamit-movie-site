@@ -2,7 +2,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { AiOutlinePlayCircle } from "react-icons/ai";
-import { FaPlay, FaSpinner } from "react-icons/fa";
+import { FaSpinner } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -13,6 +13,7 @@ import {
   IoIosArrowDroprightCircle,
   IoIosArrowDropleftCircle,
 } from "react-icons/io";
+import Button from "@/components/common/Button";
 
 interface Movie {
   id: number;
@@ -60,7 +61,7 @@ const HeroSection = () => {
               rating: movie.vote_average,
               description: movie.overview,
               backgroundImage: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-              ...movieDetails, // Spread the detailed info into this object
+              ...movieDetails,
             };
           })
         );
@@ -203,9 +204,10 @@ const HeroSection = () => {
                         </span>
                       ))}
                     </div>
-                    <button className="px-2 lg:px-6 py-2 flex items-center justify-center gap-x-2 uppercase lg:mb-4 w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
-                      <FaPlay /> Play Now
-                    </button>
+                    <Button
+                      movieId={movie.id}
+                      className="w-full sm:w-1/2 lg:w-1/3 "
+                    />
                   </div>
                   <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
                     <button className="flex items-center text-gray-200 space-x-2">
