@@ -170,7 +170,7 @@ const HeroSection = () => {
                   <div className="w-full lg:w-1/2 text-white flex flex-col justify-center">
                     <h1
                       className={`text-4xl uppercase lg:text-7xl font-bold mb-4 ${
-                        movie.title.length > 25 ? "lg:text-5xl" : "lg:text-7xl"
+                        movie.title.length > 25 ? "lg:text-4xl" : "lg:text-7xl"
                       }`}
                     >
                       {movie.title}

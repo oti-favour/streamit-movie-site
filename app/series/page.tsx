@@ -1,5 +1,6 @@
+import GenreSeriesSection from "@/components/sections/Series/GenreSeries";
 import SeriesHero from "@/components/sections/Series/Hero";
-import CurrentlyOnAirGrid from "@/components/sections/Series/OnAir";
+
 import AiringTodayGrid from "@/components/sections/Series/Today";
 
 import TopRatedSeriesGrid from "@/components/sections/Series/TopRated";
@@ -10,8 +11,8 @@ export default function Series() {
     <div>
       <SeriesHero />
       <AiringTodayGrid />
-      <CurrentlyOnAirGrid />
       <TopRatedSeriesGrid />
+      <GenreSeriesSection />
     </div>
   );
 }
