@@ -91,7 +91,7 @@ const UpcomingMoviesPage = () => {
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {movies.map((movie) => (
           <UpcomingMovieCard
-            key={movie.id} // Use `id` for the unique key
+            key={movie.id}
             title={movie.title}
             releaseDate={new Date(movie.release_date).toLocaleDateString()}
             image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

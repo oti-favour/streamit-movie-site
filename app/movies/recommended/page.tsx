@@ -6,9 +6,11 @@ import React, { useState, useEffect } from "react";
 import { FaSpinner } from "react-icons/fa";
 
 interface Movie {
+  id: number;
   title: string;
   time: string;
   image: string;
+  mediaType: "movie" | "tv";
 }
 
 const RecommendedMoviesPage = () => {
@@ -90,9 +92,11 @@ const RecommendedMoviesPage = () => {
         {movies.map((movie, index) => (
           <MovieCard
             key={index}
+            id={movie.id}
             title={movie.title}
             time={movie.time}
             image={movie.image}
+            mediaType={movie.mediaType}
           />
         ))}
       </div>
