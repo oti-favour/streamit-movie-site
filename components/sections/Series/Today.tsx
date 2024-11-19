@@ -6,6 +6,7 @@ import { FaSpinner } from "react-icons/fa";
 import Link from "next/link";
 
 interface Series {
+  seriesId: number;
   title: string;
   seasons: number;
   image: string;
@@ -96,6 +97,7 @@ const AiringTodayGrid = () => {
             title={show.title}
             seasons={show.seasons}
             image={show.image}
+            seriesId={show.seriesId}
           />
         ))}
       </div>

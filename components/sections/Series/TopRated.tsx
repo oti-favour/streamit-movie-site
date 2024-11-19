@@ -6,11 +6,11 @@ import { FaSpinner } from "react-icons/fa";
 import Link from "next/link";
 
 interface Series {
+  seriesId: string;
   title: string;
   seasons: number;
   image: string;
 }
-
 const TopRatedSeriesGrid = () => {
   const [series, setSeries] = useState<Series[]>([]);
   const [loading, setLoading] = useState(true);
@@ -96,6 +96,7 @@ const TopRatedSeriesGrid = () => {
             title={show.title}
             seasons={show.seasons}
             image={show.image}
+            seriesId={0}
           />
         ))}
       </div>
