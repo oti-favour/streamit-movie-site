@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-interface DetailsPageProps {
-  params: { media_type: string; id: string };
-}
-
 async function fetchDetails(media_type: string, id: string) {
   const response = await fetch(
     `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
@@ -17,9 +13,14 @@ async function fetchDetails(media_type: string, id: string) {
   return response.json();
 }
 
-const DetailsPage = async ({ params }: DetailsPageProps) => {
+const DetailsPage = async ({
+  params,
+}: {
+  params: { media_type: string; id: string };
+}) => {
   const { media_type, id } = params;
 
+  // Ensure we're awaiting the fetchDetails correctly
   const data = await fetchDetails(media_type, id);
 
   if (!data) {
