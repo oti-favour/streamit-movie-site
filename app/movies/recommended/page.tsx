@@ -91,7 +91,7 @@ const RecommendedMoviesPage = () => {
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {movies.map((movie, index) => (
           <MovieCard
-            key={index}
+            key={`${movie.id}-${index}`}
             id={movie.id}
             title={movie.title}
             time={movie.time}

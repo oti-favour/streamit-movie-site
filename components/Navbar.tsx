@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FaSearch, FaBell, FaRegUserCircle } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
@@ -105,36 +105,36 @@ const Navbar = () => {
                 </div>
               </div>
               <ul className="space-y-6">
-                <li>
+                <li onClick={() => setIsMenuOpen(false)}>
                   <Link href="/">
                     <div>Home</div>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/series">
+                  <Link href="/series" onClick={() => setIsMenuOpen(false)}>
                     <div>Series</div>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/movies">
+                  <Link href="/movies" onClick={() => setIsMenuOpen(false)}>
                     <div>Movies</div>
                   </Link>
                 </li>
 
                 <li>
-                  <Link href="/contact">
+                  <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
                     <div>Contact</div>
                   </Link>
                 </li>
               </ul>
 
               <div className="flex text-xl gap-x-4 mt-6">
-                <FaSearch className="text-2xl" />
-                <FaBell className="text-2xl" />
+                <Search />
+
                 <FaRegUserCircle className="text-2xl" />
               </div>
 
-              <Link href="/subscribe">
+              <Link href="/subscribe" onClick={() => setIsMenuOpen(false)}>
                 <div className="bg-red-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-700 transition-colors mt-6">
                   Subscribe Now
                 </div>

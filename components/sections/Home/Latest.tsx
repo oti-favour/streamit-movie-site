@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
 import MovieCard from "@/components/common/MovieCard";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -11,7 +10,7 @@ interface Movie {
   title: string;
   time: string;
   image: string;
-  mediaType: "movie" | "tv"; // Include media type for MovieCard
+  mediaType: "movie" | "tv";
 }
 
 const LatestGrid: React.FC = () => {
@@ -53,8 +52,8 @@ const LatestGrid: React.FC = () => {
               time: runtime,
               image: movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                : "/fallback-image.jpg", // Fallback image
-              mediaType: "movie", // Specify media type
+                : "/fallback-image.jpg",
+              mediaType: "movie",
             };
           })
         );

@@ -115,7 +115,7 @@ const Trailer = () => {
   return (
     <section className="relative w-full ">
       {movie && (
-        <div className="relative w-full h-screen ">
+        <div className="relative min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] h-[75vh] ">
           <div
             className="absolute inset-0 bg-cover bg-center "
             style={{
@@ -126,7 +126,7 @@ const Trailer = () => {
             }}
           ></div>
 
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          <div className="absolute inset-0  h-full bg-black bg-opacity-50"></div>
 
           <div className="relative z-10 flex items-center justify-between h-full px-6 md:px-12 lg:px-24 py-10 lg:py-20">
             <div className="w-full lg:w-1/2 text-white">

@@ -74,12 +74,14 @@ const UpcomingGrid = () => {
         </Link>
       </div>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {movies.map((movie) => (
+        {movies.map((movie, index) => (
           <UpcomingMovieCard
-            key={movie.id}
+            key={`${movie.id}-${index}`}
             title={movie.title}
             releaseDate={new Date(movie.release_date).toLocaleDateString()}
             image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            id={movie.id}
+            mediaType={"movie"}
           />
         ))}
       </div>

@@ -89,14 +89,19 @@ const UpcomingMoviesPage = () => {
     <div className="py-8 mt-16 px-16">
       <h2 className="text-white text-xl font-semibold mb-4">Upcoming Movies</h2>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {movies.map((movie) => (
-          <UpcomingMovieCard
-            key={movie.id}
-            title={movie.title}
-            releaseDate={new Date(movie.release_date).toLocaleDateString()}
-            image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          />
-        ))}
+        {movies.map((movie, index) => {
+          console.log("Movie data:", movie); // Debug the movie object
+          return (
+            <UpcomingMovieCard
+              key={`${movie.id}-${index}`}
+              id={movie.id}
+              title={movie.title}
+              releaseDate={new Date(movie.release_date).toLocaleDateString()}
+              image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              mediaType="movie" // Hardcoded here; ensure you pass the correct type
+            />
+          );
+        })}
       </div>
     </div>
   );

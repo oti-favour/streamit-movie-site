@@ -3,15 +3,14 @@
 import MovieCard from "@/components/common/MovieCard";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { FaSpinner } from "react-icons/fa"; // For the loading spinner
+import { FaSpinner } from "react-icons/fa";
 
-// Define the Movie type
 interface Movie {
   id: number;
   title: string;
   time: string;
   image: string;
-  mediaType: "movie" | "tv"; // Include media type for MovieCard
+  mediaType: "movie" | "tv";
 }
 
 const RecommendedGrid = () => {
@@ -50,6 +49,7 @@ const RecommendedGrid = () => {
               : "N/A";
 
             return {
+              id: movie.id,
               title: movie.title,
               time: runtime,
               image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,

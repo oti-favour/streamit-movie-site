@@ -1,19 +1,33 @@
 import Image from "next/image";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 interface UpcomingMovieCardProps {
+  id: number;
   title: string;
-  releaseDate: string; // Display the release date
-  image: string; // Poster image
+  releaseDate: string;
+  image: string;
+  mediaType: "movie" | "tv";
 }
 
 const UpcomingMovieCard: React.FC<UpcomingMovieCardProps> = ({
+  id,
   title,
   releaseDate,
   image,
+  mediaType,
 }) => {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/${mediaType}/${id}`);
+  };
+
   return (
-    <div className="relative w-full h-64 overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-x-110 hover:scale-y-105 hover:border-l-4 hover:border-red-700 shadow-lg cursor-pointer">
+    <div
+      className="relative w-full h-64 overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-x-110 hover:scale-y-105 hover:border-l-4 hover:border-red-700 shadow-lg cursor-pointer"
+      onClick={handleCardClick}
+    >
       <Image
         src={image}
         alt={title}
