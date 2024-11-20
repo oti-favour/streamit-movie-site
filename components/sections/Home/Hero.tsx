@@ -127,7 +127,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative w-full">
+    <section className="relative w-full  ">
       {loading ? (
         <div className="flex justify-center items-center">
           <FaSpinner className="animate-spin text-red-500 text-6xl" />
@@ -137,7 +137,7 @@ const HeroSection = () => {
           {error}
         </div>
       ) : (
-        <div className="relative h-[50vh] lg:h-screen">
+        <div className="relative min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] h-[75vh]">
           <IoIosArrowDroprightCircle
             className="swiper-button-next hidden lg:block"
             size={50}
@@ -154,22 +154,22 @@ const HeroSection = () => {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             }}
-            pagination={false}
+            pagination={true}
             loop={true}
             className="h-full w-full"
           >
             {movies.slice(0, 3).map((movie, index) => (
-              <SwiperSlide key={index} className="relative h-full">
+              <SwiperSlide key={index} className="relative h-full ">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${movie.backgroundImage})` }}
                 ></div>
                 <div className="absolute inset-0 h-full bg-black bg-opacity-50"></div>
 
-                <div className="relative z-10 flex h-full px-4 py-8 lg:px-24 lg:py-20 xl:py-24">
+                <div className="relative z-10 flex h-full px-12 py-8 lg:px-20 lg:py-20 xl:py-24">
                   <div className="w-full lg:w-1/2 text-white flex flex-col justify-center">
                     <h1
-                      className={`text-4xl uppercase lg:text-7xl font-bold mb-4 ${
+                      className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase mb-4 ${
                         movie.title.length > 25
                           ? "lg:text-4xl xl:text-4xl"
                           : "lg:text-6xl xl:text-6xl"
@@ -201,7 +201,10 @@ const HeroSection = () => {
                     </div>
                     <Button
                       movieId={movie.id}
-                      className="w-full sm:w-1/2 lg:w-1/3  "
+                      padding="px-4 py-2"
+                      fontWeight="font-normal"
+                      fontSize="text-lg"
+                      width="w-1/3  md:w-1/4 lg:w-1/3 2xl:w-1/4"
                     />
                   </div>
                   <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
