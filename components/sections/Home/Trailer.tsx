@@ -113,11 +113,11 @@ const Trailer = () => {
   }
 
   return (
-    <section className="relative w-full min-h-screen">
+    <section className="relative w-full ">
       {movie && (
-        <div className="relative w-full min-h-screen">
+        <div className="relative w-full h-screen ">
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center "
             style={{
               backgroundImage: `url(${movie.backgroundImage})`,
               backgroundSize: "cover",

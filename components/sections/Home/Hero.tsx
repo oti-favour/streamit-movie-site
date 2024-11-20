@@ -127,9 +127,9 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="w-full h-screen ">
+    <section className="relative w-full">
       {loading ? (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center">
           <FaSpinner className="animate-spin text-red-500 text-6xl" />
         </div>
       ) : error ? (
@@ -137,14 +137,14 @@ const HeroSection = () => {
           {error}
         </div>
       ) : (
-        <div className="relative h-full w-full">
+        <div className="relative h-[50vh] lg:h-screen">
           <IoIosArrowDroprightCircle
             className="swiper-button-next hidden lg:block"
             size={50}
             color="white"
           />
           <IoIosArrowDropleftCircle
-            className="hidden lg:block swiper-button-prev"
+            className="swiper-button-prev hidden lg:block"
             size={50}
             color="white"
           />
@@ -166,15 +166,18 @@ const HeroSection = () => {
                 ></div>
                 <div className="absolute inset-0 h-full bg-black bg-opacity-50"></div>
 
-                <div className="relative z-10 flex h-full px-8 py-16 lg:px-24 lg:py-20 xl:py-24 ">
+                <div className="relative z-10 flex h-full px-4 py-8 lg:px-24 lg:py-20 xl:py-24">
                   <div className="w-full lg:w-1/2 text-white flex flex-col justify-center">
                     <h1
                       className={`text-4xl uppercase lg:text-7xl font-bold mb-4 ${
-                        movie.title.length > 25 ? "lg:text-5xl" : "lg:text-6xl"
+                        movie.title.length > 25
+                          ? "lg:text-4xl xl:text-4xl"
+                          : "lg:text-6xl xl:text-6xl"
                       }`}
                     >
                       {movie.title}
                     </h1>
+
                     <div className="flex items-center space-x-4 mb-4">
                       <div className="flex items-center text-red-500">
                         {getStars(movie.rating)}
@@ -188,25 +191,17 @@ const HeroSection = () => {
                     <p className="block lg:hidden mb-2 text-sm">
                       {truncateText(movie.description, 200)}
                     </p>
-                    <p className="mb-2">
+                    <div className="mb-2">
                       <strong className="text-red-500">Starring:</strong>{" "}
                       {movie.starring}
-                    </p>
-                    <p className="mb-2">
+                    </div>
+                    <div className="mb-4">
                       <strong className="text-red-500">Genre:</strong>{" "}
                       {movie.genre}
-                    </p>
-                    <div className="flex space-x-2 mb-6">
-                      <strong className="text-red-500">Tags:</strong>
-                      {movie.tags.map((tag, i) => (
-                        <span key={i} className="py-1 text-white text-sm">
-                          {tag}
-                        </span>
-                      ))}
                     </div>
                     <Button
                       movieId={movie.id}
-                      className="w-full sm:w-1/2 lg:w-1/3 "
+                      className="w-full sm:w-1/2 lg:w-1/3  "
                     />
                   </div>
                   <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
