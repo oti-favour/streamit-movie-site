@@ -78,7 +78,7 @@ const GenreMoviesSection: React.FC = () => {
   }
 
   return (
-    <div className="py-8 px-16">
+    <div className="py-8 px-16 mt-16">
       <h2 className="text-white text-xl font-semibold mb-4">Movie Genres</h2>
       <div className="grid grid-cols-4 gap-4 mb-6">
         {genres.map((genre) => (

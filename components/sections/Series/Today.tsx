@@ -45,6 +45,7 @@ const AiringTodayGrid = () => {
               title: show.name,
               seasons: detailsData.number_of_seasons || 1,
               image: `https://image.tmdb.org/t/p/w500${show.poster_path}`,
+              seriesId: show.id,
             };
           })
         );
@@ -98,6 +99,8 @@ const AiringTodayGrid = () => {
             seasons={show.seasons}
             image={show.image}
             seriesId={show.seriesId}
+            id={show.seriesId}
+            mediaType={"tv"}
           />
         ))}
       </div>

@@ -2,7 +2,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { AiOutlinePlayCircle } from "react-icons/ai";
-import { FaPlay } from "react-icons/fa";
+
 import {
   IoIosArrowDroprightCircle,
   IoIosArrowDropleftCircle,
@@ -10,8 +10,10 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/core";
 import "swiper/swiper-bundle.min.css";
+import Button from "@/components/common/Button";
 
 interface Series {
+  id: number;
   title: string;
   rating: number;
   seasons: string;
@@ -112,9 +114,9 @@ const SeriesHero = () => {
   }
 
   return (
-    <section className="relative w-full h-screen">
+    <section className="relative w-full">
       {series && (
-        <div className="relative w-full h-screen">
+        <div className="relative  min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] h-[75vh]">
           <div className="relative h-full w-full">
             <IoIosArrowDroprightCircle
               className="swiper-button-next hidden lg:block"
@@ -147,8 +149,8 @@ const SeriesHero = () => {
                     }}
                   >
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                    <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between h-full px-6 md:px-12 lg:px-24 py-10 lg:py-20">
-                      <div className="w-full lg:w-1/2 text-white">
+                    <div className="relative z-10 flex h-full px-12 py-8 lg:px-20 lg:py-20 xl:py-24">
+                      <div className="w-full lg:w-1/2  text-white flex flex-col justify-center">
                         <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold mb-4">
                           {s.title}
                         </h1>
@@ -169,9 +171,13 @@ const SeriesHero = () => {
                           <strong className="text-red-500">Genre:</strong>{" "}
                           {s.genre}
                         </p>
-                        <button className="px-2 lg:px-1 py-2 flex items-center justify-center gap-x-2 uppercase lg:mb-4 w-1/2 md:w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
-                          <FaPlay /> Play Now
-                        </button>
+                        <Button
+                          seriesId={s.id}
+                          padding="px-4 py-2"
+                          fontWeight="font-normal"
+                          fontSize="text-lg"
+                          width="w-1/3  md:w-1/4 lg:w-1/3 2xl:w-1/4"
+                        />
                       </div>
                       <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
                         <button className="flex items-center text-gray-200 space-x-2">

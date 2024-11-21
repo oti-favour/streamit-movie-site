@@ -1,21 +1,36 @@
+"use client";
 import Image from "next/image";
-import Button from "./Button"; // Assuming Button is a component that takes a `movieId` prop
+import Button from "./Button";
+import { useRouter } from "next/navigation";
 
 interface SeriesCardProps {
+  id: number;
   title: string;
   seasons: number;
   image: string;
-  seriesId: number; // Add seriesId prop
+  seriesId: number;
+  mediaType: "movie" | "tv";
 }
 
 const SeriesCard: React.FC<SeriesCardProps> = ({
+  id,
   title,
   seasons,
   image,
-  seriesId,
+
+  mediaType,
 }) => {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/${mediaType}/${id}`);
+  };
+
   return (
-    <div className="relative w-full h-64 overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-x-110 hover:scale-y-105 hover:border-l-4 hover:border-red-700 shadow-lg cursor-pointer">
+    <div
+      className="relative w-full h-64 overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-x-110 hover:scale-y-105 hover:border-l-4 hover:border-red-700 shadow-lg cursor-pointer"
+      onClick={handleCardClick}
+    >
       <Image
         src={image}
         alt={title}
@@ -28,10 +43,10 @@ const SeriesCard: React.FC<SeriesCardProps> = ({
         <p className="text-gray-300 text-sm mb-2">{seasons} Seasons</p>
         <div
           onClick={(e) => {
-            e.stopPropagation(); // Prevent card click
+            e.stopPropagation();
           }}
         >
-          <Button movieId={seriesId} /> {/* Pass seriesId as movieId */}
+          <Button seriesId={id} />
         </div>
       </div>
     </div>

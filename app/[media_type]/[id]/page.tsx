@@ -2,7 +2,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 
-// Define the type for params
 type Params = Promise<{ media_type: string; id: string }>;
 
 interface DetailsPageProps {

@@ -97,6 +97,8 @@ const GenreSeriesSection: React.FC = () => {
               seasons={series.seasons}
               image={series.image}
               seriesId={series.seriesId} // Pass seriesId here
+              id={series.seriesId}
+              mediaType={"tv"}
             />
           ))}
         </div>

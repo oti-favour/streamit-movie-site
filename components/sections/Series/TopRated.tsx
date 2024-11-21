@@ -6,7 +6,7 @@ import { FaSpinner } from "react-icons/fa";
 import Link from "next/link";
 
 interface Series {
-  seriesId: string;
+  seriesId: number;
   title: string;
   seasons: number;
   image: string;
@@ -32,7 +32,6 @@ const TopRatedSeriesGrid = () => {
 
         const data = await response.json();
 
-        // Fetch details for each series to get number_of_seasons
         const seriesWithDetails = await Promise.all(
           data.results.slice(0, 3).map(async (show: any) => {
             const detailsResponse = await fetch(
@@ -42,8 +41,9 @@ const TopRatedSeriesGrid = () => {
 
             return {
               title: show.name,
-              seasons: detailsData.number_of_seasons || 1, // Default to 1 season if missing
+              seasons: detailsData.number_of_seasons || 1,
               image: `https://image.tmdb.org/t/p/w500${show.poster_path}`,
+              seriesId: show.id,
             };
           })
         );
@@ -96,7 +96,9 @@ const TopRatedSeriesGrid = () => {
             title={show.title}
             seasons={show.seasons}
             image={show.image}
-            seriesId={0}
+            seriesId={show.seriesId}
+            id={show.seriesId}
+            mediaType={"tv"}
           />
         ))}
       </div>

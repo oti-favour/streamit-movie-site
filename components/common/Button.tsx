@@ -4,7 +4,8 @@ import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
 
 interface ButtonProps {
-  movieId: number;
+  movieId?: number;
+  seriesId?: number;
   padding?: string;
   fontWeight?: string;
   fontSize?: string;
@@ -12,6 +13,7 @@ interface ButtonProps {
 }
 const Button: React.FC<ButtonProps> = ({
   movieId,
+  seriesId,
   padding = "px-4 py-2",
   fontWeight = "font-light",
   fontSize = "text-sm",
@@ -22,6 +24,13 @@ const Button: React.FC<ButtonProps> = ({
 
   const fetchMovieVideo = async () => {
     try {
+      const type = movieId ? "movie" : seriesId ? "tv" : null;
+      const id = movieId || seriesId;
+
+      if (!type || !id) {
+        alert("No valid ID provided for movie or series.");
+        return;
+      }
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
       );
@@ -54,8 +63,8 @@ const Button: React.FC<ButtonProps> = ({
       </button>
 
       {showPlayer && videoKey && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
-          <div className="relative w-full h-screen">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center pt-32">
+          <div className="relative w-full h-screen overflow-y-hidden scroll ">
             <ReactPlayer
               url={`https://www.youtube.com/watch?v=${videoKey}`}
               playing

@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import Button from "@/components/common/Button";
 import { useState, useEffect } from "react";
 import { AiOutlinePlayCircle } from "react-icons/ai";
-import { FaPlay } from "react-icons/fa";
 
 interface Movie {
+  id: number | undefined;
+  movieId: number;
   title: string;
   rating: number;
   duration: string;
@@ -64,7 +66,9 @@ const Trailer = () => {
             "Unknown",
           tags: detailsData.keywords?.map((tag: any) => tag.name) || [],
           backgroundImage: `https://image.tmdb.org/t/p/original${detailsData.backdrop_path}`,
-          trailerUrl: `https://www.youtube.com/watch?v=${detailsData.trailer?.id}`, // Assuming there's a trailer
+          trailerUrl: `https://www.youtube.com/watch?v=${detailsData.trailer?.id}`,
+          movieId: detailsData.id,
+          id: detailsData.id,
         });
       } catch (err) {
         console.error("Error fetching the top-rated movie:", err);
@@ -161,9 +165,13 @@ const Trailer = () => {
                   </span>
                 ))}
               </div>
-              <button className="px-2 lg:px-1  py-2 flex items-center justify-center gap-x-2 uppercase lg:mb-4 w-1/2 md:w-1/2 lg:w-1/3 bg-red-600 text-white font-semibold hover:bg-red-700">
-                <FaPlay /> Play Now
-              </button>
+              <Button
+                movieId={movie.id}
+                padding="px-4 py-2"
+                fontWeight="font-normal"
+                fontSize="text-lg"
+                width="w-1/3  md:w-1/4 lg:w-1/3 2xl:w-1/4"
+              />
             </div>
             <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
               <button className="flex items-center text-gray-200 space-x-2">
