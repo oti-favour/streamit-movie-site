@@ -28,7 +28,7 @@ const Navbar = () => {
           isScrolled ? "bg-[#191919]" : "bg-black bg-opacity-50"
         }`}
       >
-        <div className="container mx-auto max-w-screen-2xl flex justify-between items-center py-4 px-4 lg:px-12 2xl:px-16 gap-x-8">
+        <div className="container mx-auto md:max-w-screen-2xl xl:max-w-[1900px] flex justify-between items-center py-4 px-4 lg:px-12 2xl:px-16 gap-x-8">
           <div>
             <Link href="/">
               <div className="flex">
