@@ -8,7 +8,7 @@ import { FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className=" text-white py-8 px-16">
+    <footer className=" text-white py-8  px-5 lg:px-16">
       <div className="flex flex-col gap-y-4 lg:flex-row pb-2">
         <div className="lg:flex-col w-full lg:mr-8 lg:w-3/5">
           <ul className="hidden  lg:flex text-[12px] gap-x-8">

@@ -68,11 +68,11 @@ const GenreSeriesSection: React.FC = () => {
   }
 
   return (
-    <div className="py-8 px-16">
+    <div className="py-8 lg:px-16 px-5">
       <h2 className="text-white text-xl font-semibold mb-4">
         TV Series Genres
       </h2>
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
         {genres.map((genre) => (
           <button
             key={genre.id}

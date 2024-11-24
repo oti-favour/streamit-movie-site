@@ -15,7 +15,7 @@ const ContactForm: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({
     name: "",
-    address: "", // Replacing 'company' with 'address'
+    address: "",
     email: "",
     phone: "",
     message: "",
@@ -108,9 +108,9 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen px-8 py-12">
-      <div className="w-full lg:w-1/2 p-8">
-        <h2 className="text-4xl font-bold text-red-600 mb-6">Contact Us</h2>
+    <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen px-5 lg:px-16 py-16">
+      <div className="w-full lg:w-1/2 py-8 ">
+        <h2 className="text-4xl font-bold text-[#DC2626] mb-6 ">Contact Us</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-white mb-1">Name</label>

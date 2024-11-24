@@ -170,7 +170,7 @@ const Trailer = () => {
                 padding="px-4 py-2"
                 fontWeight="font-normal"
                 fontSize="text-lg"
-                width="w-1/3  md:w-1/4 lg:w-1/3 2xl:w-1/4"
+                width=""
               />
             </div>
             <div className="hidden lg:flex lg:w-1/2 items-center justify-center">

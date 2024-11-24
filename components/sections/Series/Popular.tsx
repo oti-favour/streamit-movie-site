@@ -88,6 +88,8 @@ const PopularSeriesGrid = () => {
             seasons={show.seasons}
             image={show.image}
             seriesId={show.seriesId}
+            id={show.seriesId}
+            mediaType={"tv"}
           />
         ))}
       </div>

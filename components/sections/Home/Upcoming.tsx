@@ -61,7 +61,7 @@ const UpcomingGrid = () => {
   }
 
   return (
-    <div className="py-8 px-16">
+    <div className="px-6 py-8 lg:px-16">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-white text-lg lg:text-xl font-semibold">
           Upcoming Movies

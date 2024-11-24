@@ -30,9 +30,9 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
   }
 
   return (
-    <div className="p-8 pt-28 px-16 text-white">
-      <h1 className="text-6xl font-bold">{data.title || data.name}</h1>
-      <p className="mt-4 text-gray-300 text-lg sm:text-xl md:text-2xl">
+    <div className="py-32 px-16 text-white min-h-screen">
+      <h1 className="text-4xl font-bold">{data.title || data.name}</h1>
+      <p className="mt-4 text-gray-300 text-sm sm:text-base md:text-base">
         {data.overview}
       </p>
       <div className="w-full mx-auto flex flex-col sm:flex-row justify-between gap-6 sm:gap-8 mt-6">

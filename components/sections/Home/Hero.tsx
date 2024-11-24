@@ -137,16 +137,16 @@ const HeroSection = () => {
           {error}
         </div>
       ) : (
-        <div className="relative min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] h-[75vh]">
+        <div className="relative min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] h-[100vh]">
           <IoIosArrowDroprightCircle
             className="swiper-button-next hidden lg:block"
-            size={50}
-            color="white"
+            size={100}
+            color="rgba(255, 255, 255, 0.2)"
           />
           <IoIosArrowDropleftCircle
             className="swiper-button-prev hidden lg:block"
-            size={50}
-            color="white"
+            size={100}
+            color="rgba(255, 255, 255, 0.2)"
           />
           <Swiper
             modules={[Pagination, Navigation]}
@@ -156,6 +156,7 @@ const HeroSection = () => {
             }}
             pagination={true}
             loop={true}
+            color=""
             className="h-full w-full"
           >
             {movies.slice(0, 3).map((movie, index) => (
@@ -166,7 +167,7 @@ const HeroSection = () => {
                 ></div>
                 <div className="absolute inset-0 h-full bg-black bg-opacity-50"></div>
 
-                <div className="relative z-10 flex h-full px-12 py-8 lg:px-20 lg:py-20 xl:py-24">
+                <div className="relative z-10 flex h-full px-9 lg:px-20 lg:py-20 xl:py-24">
                   <div className="w-full lg:w-1/2 text-white flex flex-col justify-center">
                     <h1
                       className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase mb-4 ${
@@ -204,7 +205,7 @@ const HeroSection = () => {
                       padding="px-4 py-2"
                       fontWeight="font-normal"
                       fontSize="text-lg"
-                      width="w-1/3  md:w-1/4 lg:w-1/3 2xl:w-1/4"
+                      width=" w-3/5 lg:w-1/3"
                     />
                   </div>
                   <div className="hidden lg:flex lg:w-1/2 items-center justify-center">

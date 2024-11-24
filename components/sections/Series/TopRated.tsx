@@ -77,7 +77,7 @@ const TopRatedSeriesGrid = () => {
   }
 
   return (
-    <div className="py-8 px-16">
+    <div className="py-8 lg:px-16 px-5">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-white text-lg lg:text-xl font-semibold">
           Top Rated Series

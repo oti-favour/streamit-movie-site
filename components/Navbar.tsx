@@ -6,15 +6,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { RiCloseLargeLine } from "react-icons/ri";
 import Search from "./common/Search";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const handleAccountClick = () => {
+    const sessionId = localStorage.getItem("session_id");
+
+    if (sessionId) {
+      router.push("/account");
+    } else {
+      router.push("/login");
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100); // Adjust threshold as needed
+      setIsScrolled(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -69,7 +81,7 @@ const Navbar = () => {
             <div className="flex text-xl gap-x-4 mt-2 text-white">
               <Search />
 
-              <FaRegUserCircle />
+              <FaRegUserCircle onClick={handleAccountClick} />
             </div>
 
             <Link href="/subscribe">
@@ -128,10 +140,16 @@ const Navbar = () => {
                 </li>
               </ul>
 
-              <div className="flex text-xl gap-x-4 mt-6">
+              <div
+                className="flex text-xl gap-x-4 mt-6"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <Search />
 
-                <FaRegUserCircle className="text-2xl" />
+                <FaRegUserCircle
+                  className="text-2xl"
+                  onClick={handleAccountClick}
+                />
               </div>
 
               <Link href="/subscribe" onClick={() => setIsMenuOpen(false)}>

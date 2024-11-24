@@ -87,7 +87,7 @@ const LatestGrid: React.FC = () => {
   }
 
   return (
-    <div className="py-8 px-16">
+    <div className="px-6 py-8 lg:px-16">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-white text-lg lg:text-xl font-semibold">
           Latest Movies
@@ -99,7 +99,7 @@ const LatestGrid: React.FC = () => {
           View All
         </Link>
       </div>
-      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {movies.map((movie, index) => (
           <MovieCard
             key={`${movie.id}-${index}`}

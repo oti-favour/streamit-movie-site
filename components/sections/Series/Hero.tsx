@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/core";
 import "swiper/swiper-bundle.min.css";
 import Button from "@/components/common/Button";
+import { FaSpinner } from "react-icons/fa";
 
 interface Series {
   id: number;
@@ -100,7 +101,7 @@ const SeriesHero = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <AiOutlinePlayCircle className="animate-spin text-red-500 text-6xl" />
+        <FaSpinner className="animate-spin text-red-500 text-6xl" />
       </div>
     );
   }
@@ -120,13 +121,13 @@ const SeriesHero = () => {
           <div className="relative h-full w-full">
             <IoIosArrowDroprightCircle
               className="swiper-button-next hidden lg:block"
-              size={50}
-              color="white"
+              size={500}
+              color="white "
             />
             <IoIosArrowDropleftCircle
               className="hidden lg:block swiper-button-prev"
-              size={50}
-              color="white"
+              size={100}
+              color="rgba(255, 255, 255, 0.5)"
             />
             <Swiper
               modules={[Pagination, Navigation]}
@@ -136,7 +137,7 @@ const SeriesHero = () => {
               }}
               pagination={false}
               loop={true}
-              className="h-full w-full"
+              className="h-full w-full "
             >
               {series.map((s, index) => (
                 <SwiperSlide key={index}>
@@ -149,7 +150,7 @@ const SeriesHero = () => {
                     }}
                   >
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                    <div className="relative z-10 flex h-full px-12 py-8 lg:px-20 lg:py-20 xl:py-24">
+                    <div className="relative z-10 flex h-full px-6 py-8 lg:px-20 lg:py-20 xl:py-24">
                       <div className="w-full lg:w-1/2  text-white flex flex-col justify-center">
                         <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold mb-4">
                           {s.title}
@@ -176,7 +177,7 @@ const SeriesHero = () => {
                           padding="px-4 py-2"
                           fontWeight="font-normal"
                           fontSize="text-lg"
-                          width="w-1/3  md:w-1/4 lg:w-1/3 2xl:w-1/4"
+                          width=""
                         />
                       </div>
                       <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
