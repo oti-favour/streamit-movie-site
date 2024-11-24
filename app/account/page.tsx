@@ -28,9 +28,12 @@ const AccountPage: React.FC = () => {
     );
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold">My Account</h1>
-      <p>Welcome! Here’s your TMDB session ID: {sessionId}</p>
+    <div className="container gap-5 mx-auto px-4 py-20 items-center lg:pt-32 text-white  min-h-screen">
+      <h1 className="text-3xl font-bold mb-4">My Account</h1>
+      <hr className="mb-4 " />
+      <p>
+        Welcome! <br /> Here’s your TMDB session ID: {sessionId}
+      </p>
       <button
         onClick={() => {
           localStorage.removeItem("session_id");

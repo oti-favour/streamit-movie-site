@@ -64,6 +64,17 @@ const LoginPage = () => {
         <h1 className="text-2xl text-center font-bold">
           Login To Access Account{" "}
         </h1>
+        <h3>
+          Don&apos;t have an account?{" "}
+          <a
+            href="https://www.themoviedb.org/signup"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            Sign Up
+          </a>
+        </h3>
         {error && <p className="text-red-500">{error}</p>}
         <input
           type="text"
