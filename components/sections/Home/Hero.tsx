@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
-import { AiOutlinePlayCircle } from "react-icons/ai";
+
 import { FaSpinner } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,6 +14,7 @@ import {
   IoIosArrowDropleftCircle,
 } from "react-icons/io";
 import Button from "@/components/common/Button";
+import TrailerButton from "@/components/common/TrailerButton";
 
 interface Movie {
   id: number;
@@ -209,15 +210,7 @@ const HeroSection = () => {
                     />
                   </div>
                   <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
-                    <button className="flex items-center text-gray-200 space-x-2">
-                      <AiOutlinePlayCircle
-                        size={90}
-                        className="hover:text-red-500"
-                      />
-                      <span className="text-2xl uppercase font-medium">
-                        Watch Trailer
-                      </span>
-                    </button>
+                    <TrailerButton movieId={movie.id} />
                   </div>
                 </div>
               </SwiperSlide>

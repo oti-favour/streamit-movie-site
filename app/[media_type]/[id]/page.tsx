@@ -1,6 +1,6 @@
+import TrailerButton from "@/components/common/TrailerButton";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { AiOutlinePlayCircle } from "react-icons/ai";
 
 type Params = Promise<{ media_type: string; id: string }>;
 
@@ -20,6 +20,7 @@ async function fetchDetails(media_type: string, id: string) {
   return response.json();
 }
 
+// eslint-disable-next-line @next/next/no-async-client-component
 const DetailsPage = async ({ params }: DetailsPageProps) => {
   const { media_type, id } = await params;
 
@@ -45,12 +46,10 @@ const DetailsPage = async ({ params }: DetailsPageProps) => {
             height={375}
           />
         )}
-        <button className="w-full sm:w-1/2 lg:w-1/3 flex items-center justify-center text-gray-200 space-x-2 py-3 px-6 mt-6 sm:mt-0 ">
-          <AiOutlinePlayCircle size={90} className="hover:text-red-500" />
-          <span className="text-xl sm:text-2xl uppercase font-medium">
-            Watch Trailer
-          </span>
-        </button>
+        <TrailerButton
+          movieId={media_type === "movie" ? parseInt(id, 10) : undefined}
+          seriesId={media_type === "tv" ? parseInt(id, 10) : undefined}
+        />
       </div>
     </div>
   );

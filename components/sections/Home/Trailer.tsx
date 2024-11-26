@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Button from "@/components/common/Button";
+import TrailerButton from "@/components/common/TrailerButton";
 import { useState, useEffect } from "react";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 
@@ -174,12 +175,7 @@ const Trailer = () => {
               />
             </div>
             <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
-              <button className="flex items-center text-gray-200 space-x-2">
-                <AiOutlinePlayCircle size={90} className="hover:text-red-500" />
-                <span className="text-2xl uppercase font-medium">
-                  Watch Trailer
-                </span>
-              </button>
+              <TrailerButton movieId={movie.id} />
             </div>
           </div>
         </div>

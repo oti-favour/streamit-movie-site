@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   padding = "px-4 py-2",
   fontWeight = "font-light",
   fontSize = "text-sm",
-  width = "w-auto",
+  width = "w-full",
 }) => {
   const router = useRouter();
 

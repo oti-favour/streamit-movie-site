@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState, useEffect } from "react";
-import { AiOutlinePlayCircle } from "react-icons/ai";
 
 import {
   IoIosArrowDroprightCircle,
@@ -12,6 +11,7 @@ import { Pagination, Navigation } from "swiper/core";
 import "swiper/swiper-bundle.min.css";
 import Button from "@/components/common/Button";
 import { FaSpinner } from "react-icons/fa";
+import TrailerButton from "@/components/common/TrailerButton";
 
 interface Series {
   id: number;
@@ -177,19 +177,11 @@ const SeriesHero = () => {
                           padding="px-4 py-2"
                           fontWeight="font-normal"
                           fontSize="text-lg"
-                          width=""
+                          width=" w-3/5 lg:w-1/3"
                         />
                       </div>
                       <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
-                        <button className="flex items-center text-gray-200 space-x-2">
-                          <AiOutlinePlayCircle
-                            size={90}
-                            className="hover:text-red-500"
-                          />
-                          <span className="text-2xl uppercase font-medium">
-                            Watch Trailer
-                          </span>
-                        </button>
+                        <TrailerButton seriesId={s.id} />
                       </div>
                     </div>
                   </div>
