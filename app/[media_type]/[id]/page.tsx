@@ -5,8 +5,10 @@ import TrailerButton from "@/components/common/TrailerButton";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+type Params = { media_type: string; id: string };
+
 interface DetailsPageProps {
-  params: { media_type: string; id: string };
+  params: Params;
 }
 
 async function fetchDetails(media_type: string, id: string) {
