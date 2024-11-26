@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
 import TrailerButton from "@/components/common/TrailerButton";
 import Image from "next/image";
-import { notFound } from "next/navigation";
-
-type Params = Promise<{ media_type: string; id: string }>;
+import { useEffect, useState } from "react";
 
 interface DetailsPageProps {
-  params: Params;
+  params: { media_type: string; id: string };
 }
 
 async function fetchDetails(media_type: string, id: string) {
@@ -14,20 +15,30 @@ async function fetchDetails(media_type: string, id: string) {
   );
 
   if (!response.ok) {
-    return null;
+    throw new Error("Failed to fetch details");
   }
 
   return response.json();
 }
 
-// eslint-disable-next-line @next/next/no-async-client-component
-const DetailsPage = async ({ params }: DetailsPageProps) => {
-  const { media_type, id } = await params;
+const DetailsPage: React.FC<DetailsPageProps> = ({ params }) => {
+  const { media_type, id } = params;
+  const [data, setData] = useState<any | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const data = await fetchDetails(media_type, id);
+  useEffect(() => {
+    fetchDetails(media_type, id)
+      .then((details) => setData(details))
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      .catch((error) => setError("Could not load details"));
+  }, [media_type, id]);
+
+  if (error) {
+    return <div className="text-white text-center mt-32">{error}</div>;
+  }
 
   if (!data) {
-    notFound();
+    return <div className="text-white text-center mt-32">Loading...</div>;
   }
 
   return (
