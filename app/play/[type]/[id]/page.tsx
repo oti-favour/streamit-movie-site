@@ -11,6 +11,7 @@ const VideoPlayerPage = () => {
   const router = useRouter();
   const [videoKey, setVideoKey] = useState<string | null>(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchVideoKey = async () => {
     if (!type || !id) return;
 
@@ -32,7 +33,7 @@ const VideoPlayerPage = () => {
 
   useEffect(() => {
     fetchVideoKey();
-  }, [type, id]);
+  }, [type, id, fetchVideoKey]);
 
   if (!videoKey) {
     return (
