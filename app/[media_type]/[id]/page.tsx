@@ -5,13 +5,14 @@ import TrailerButton from "@/components/common/TrailerButton";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-type Params = { media_type: string; id: string }; // Explicitly define Params
+// Define Params and DetailsPageProps
+type Params = { media_type: string; id: string };
 
 interface DetailsPageProps {
-  params: Params; // Explicitly define as a synchronous type
+  params: Awaited<Params>; // Ensure params is treated as a resolved (synchronous) type
 }
 
-// Fetch function for the movie/series details
+// Fetch function for movie/series details
 async function fetchDetails(media_type: string, id: string) {
   const response = await fetch(
     `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
@@ -24,9 +25,9 @@ async function fetchDetails(media_type: string, id: string) {
   return response.json();
 }
 
-// DetailsPage Component
+// Main component
 const DetailsPage: React.FC<DetailsPageProps> = ({ params }) => {
-  const { media_type, id } = params; // Destructure params
+  const { media_type, id } = params;
   const [data, setData] = useState<any | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,7 +48,7 @@ const DetailsPage: React.FC<DetailsPageProps> = ({ params }) => {
     return <div className="text-white text-center mt-32">Loading...</div>;
   }
 
-  // Main content rendering
+  // Render details
   return (
     <div className="py-32 px-16 text-white min-h-screen">
       <h1 className="text-4xl font-bold">{data.title || data.name}</h1>
