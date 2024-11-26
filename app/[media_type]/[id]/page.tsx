@@ -5,12 +5,13 @@ import TrailerButton from "@/components/common/TrailerButton";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-type Params = { media_type: string; id: string };
+type Params = { media_type: string; id: string }; // Explicitly define Params
 
 interface DetailsPageProps {
-  params: Params;
+  params: Params; // Explicitly define as a synchronous type
 }
 
+// Fetch function for the movie/series details
 async function fetchDetails(media_type: string, id: string) {
   const response = await fetch(
     `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
@@ -23,26 +24,30 @@ async function fetchDetails(media_type: string, id: string) {
   return response.json();
 }
 
+// DetailsPage Component
 const DetailsPage: React.FC<DetailsPageProps> = ({ params }) => {
-  const { media_type, id } = params;
+  const { media_type, id } = params; // Destructure params
   const [data, setData] = useState<any | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch details on component mount
   useEffect(() => {
     fetchDetails(media_type, id)
       .then((details) => setData(details))
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      .catch((error) => setError("Could not load details"));
+      .catch(() => setError("Could not load details"));
   }, [media_type, id]);
 
+  // Error handling
   if (error) {
     return <div className="text-white text-center mt-32">{error}</div>;
   }
 
+  // Loading state
   if (!data) {
     return <div className="text-white text-center mt-32">Loading...</div>;
   }
 
+  // Main content rendering
   return (
     <div className="py-32 px-16 text-white min-h-screen">
       <h1 className="text-4xl font-bold">{data.title || data.name}</h1>
