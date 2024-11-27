@@ -1,18 +1,17 @@
-"use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import TrailerButton from "@/components/common/TrailerButton";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import TrailerButton from "@/components/common/TrailerButton";
 
-// Define Params and DetailsPageProps
+// Define types
 type Params = { media_type: string; id: string };
 
 interface DetailsPageProps {
-  params: Awaited<Params>; // Ensure params is treated as a resolved (synchronous) type
+  data: any; // Movie or TV details fetched from the API
+  error?: string; // Error message, if any
 }
 
-// Fetch function for movie/series details
+// Fetch details function
 async function fetchDetails(media_type: string, id: string) {
   const response = await fetch(
     `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
@@ -25,30 +24,34 @@ async function fetchDetails(media_type: string, id: string) {
   return response.json();
 }
 
-// Main component
-const DetailsPage: React.FC<DetailsPageProps> = ({ params }) => {
-  const { media_type, id } = params;
-  const [data, setData] = useState<any | null>(null);
-  const [error, setError] = useState<string | null>(null);
+// Server-side fetching with `getServerSideProps`
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { media_type, id } = context.params as Params;
 
-  // Fetch details on component mount
-  useEffect(() => {
-    fetchDetails(media_type, id)
-      .then((details) => setData(details))
-      .catch(() => setError("Could not load details"));
-  }, [media_type, id]);
+  try {
+    const data = await fetchDetails(media_type, id);
+    return { props: { data } }; // Pass fetched data to the page
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    return {
+      props: {
+        data: null,
+        error: "Could not load details.",
+      },
+    };
+  }
+};
 
-  // Error handling
+// Component
+const DetailsPage = ({ data, error }: DetailsPageProps) => {
   if (error) {
     return <div className="text-white text-center mt-32">{error}</div>;
   }
 
-  // Loading state
   if (!data) {
     return <div className="text-white text-center mt-32">Loading...</div>;
   }
 
-  // Render details
   return (
     <div className="py-32 px-16 text-white min-h-screen">
       <h1 className="text-4xl font-bold">{data.title || data.name}</h1>
@@ -66,8 +69,8 @@ const DetailsPage: React.FC<DetailsPageProps> = ({ params }) => {
           />
         )}
         <TrailerButton
-          movieId={media_type === "movie" ? parseInt(id, 10) : undefined}
-          seriesId={media_type === "tv" ? parseInt(id, 10) : undefined}
+          movieId={data.media_type === "movie" ? data.id : undefined}
+          seriesId={data.media_type === "tv" ? data.id : undefined}
         />
       </div>
     </div>
